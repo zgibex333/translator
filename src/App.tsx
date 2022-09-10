@@ -1,42 +1,32 @@
-import Box from "@mui/material/Box";
 import { ContextWrapper } from "./components/ContextWrapper";
 import { Header } from "./components/Header";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import RepeatIcon from "@mui/icons-material/Repeat";
-import { TranslateColumn } from "./components/TranslateColumn";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { FAVOURITES, HISTORY, HOME } from "./utils/routes";
+import { TranslatePage } from "./pages/TranslatePage";
+import { FavouritesPage } from "./pages/FavouritesPage";
+import { HistoryPage } from "./pages/HistoryPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 export const App: React.FC = () => {
   return (
-    <ContextWrapper>
-      <Header />
-      <Container
-        maxWidth="xl"
-        sx={{
-          flexGrow: 1,
-        }}
-      >
-        <Box
+    <BrowserRouter>
+      <ContextWrapper>
+        <Header />
+        <Container
+          maxWidth="xl"
           sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            justifyContent: "space-between",
-            alignItems: "center",
-            mt: 10,
+            flexGrow: 1,
           }}
         >
-          <TranslateColumn />
-          <Button
-            variant="outlined"
-            sx={{
-              my: { xs: 2, md: "none" },
-            }}
-          >
-            <RepeatIcon />
-          </Button>
-          <TranslateColumn />
-        </Box>
-      </Container>
-    </ContextWrapper>
+          <Routes>
+            <Route path={HOME} element={<TranslatePage />} />
+            <Route path={FAVOURITES} element={<FavouritesPage />} />
+            <Route path={HISTORY} element={<HistoryPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Container>
+      </ContextWrapper>
+    </BrowserRouter>
   );
 };

@@ -13,13 +13,16 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-
+import RttIcon from "@mui/icons-material/Rtt";
 import { ColorModeContext } from "../context/context";
 import { useTheme } from "@mui/material";
+import { FAVOURITES, HISTORY, HOME } from "../utils/routes";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const pages = [
-  ["Favourites", <FavoriteBorderIcon />],
-  ["History", <HistoryEduIcon />],
+const pages: [string, React.ReactNode, string][] = [
+  ["Translate", <RttIcon />, HOME],
+  ["Favourites", <FavoriteBorderIcon />, FAVOURITES],
+  ["History", <HistoryEduIcon />, HISTORY as string],
 ];
 
 export const Header: React.FC = () => {
@@ -29,12 +32,17 @@ export const Header: React.FC = () => {
 
   const theme = useTheme();
 
+  const { pathname } = useLocation();
+
+  const navigate = useNavigate();
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (path: string) => {
     setAnchorElNav(null);
+    navigate(path);
   };
 
   const currentColorModeIcon =
@@ -74,9 +82,12 @@ export const Header: React.FC = () => {
               }}
             >
               {pages.map((page, index) => (
-                <MenuItem key={index} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page[0]}</Typography>
+                <MenuItem
+                  key={index}
+                  onClick={() => handleCloseNavMenu(page[2])}
+                >
                   {page[1]}
+                  <Typography textAlign="center">{page[0]}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -85,9 +96,10 @@ export const Header: React.FC = () => {
             {pages.map((page, index) => (
               <Button
                 key={index}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleCloseNavMenu(page[2])}
                 sx={{ my: 2, mr: 2, color: "white", display: "flex" }}
                 endIcon={page[1]}
+                variant={pathname === page[2] ? "contained" : "text"}
               >
                 {page[0]}
               </Button>
