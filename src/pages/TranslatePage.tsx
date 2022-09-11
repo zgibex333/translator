@@ -34,7 +34,7 @@ export const TranslatePage: React.FC = () => {
     useState<string>("auto");
   const [currentLangOutputField, setCurrentLangOutputField] =
     useState<string>("en");
-  const debouncedValue = useDebounce(inputFieldValue, 1000);
+  const [debouncedValue, setDebounceStopped] = useDebounce(inputFieldValue, 1000);
 
   const translateOnChangeHandler = async () => {
     setProcessingTranslation(true);
@@ -64,6 +64,7 @@ export const TranslatePage: React.FC = () => {
       });
     }
     setProcessingTranslation(false);
+    setDebounceStopped(false);
   };
 
   const handleCloseAlert = (
@@ -78,6 +79,8 @@ export const TranslatePage: React.FC = () => {
 
   const switchColumnsHandler = () => {
     const tempValue = currentLangInputField;
+    setDebounceStopped(true);
+    setInputFieldValue(outputFieldValue);
     if (currentLangInputField === "auto") {
       setCurrentLangInputField(currentLangOutputField);
       setCurrentLangOutputField(detectedLanguage || currentLangOutputField);
@@ -85,7 +88,6 @@ export const TranslatePage: React.FC = () => {
       setCurrentLangInputField(currentLangOutputField);
       setCurrentLangOutputField(tempValue);
     }
-    setInputFieldValue(outputFieldValue);
   };
 
   useEffect(() => {

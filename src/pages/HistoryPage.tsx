@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { FavCard } from "../components/FavCard";
+import { ItemCard } from "../components/ItemCard";
 import { LanguagesListContext } from "../context/context";
 import { getHistoryList } from "../utils/localStorage";
 import { countPagesAmount, paginate } from "../utils/pagination";
@@ -50,7 +50,7 @@ export const HistoryPage: React.FC = () => {
       <>
         <Box>
           {paginate(historyList, perPage, page).map((item, index) => (
-            <FavCard key={index} {...item} />
+            <ItemCard key={index} {...item} />
           ))}
         </Box>
         <Stack spacing={2} sx={{ alignItems: "center", mb: 3 }}>
@@ -68,7 +68,7 @@ export const HistoryPage: React.FC = () => {
       }}
     >
       <Typography variant="h4" gutterBottom textAlign="center">
-        This list is empty yet
+        History is empty yet
       </Typography>
     </Box>
   );

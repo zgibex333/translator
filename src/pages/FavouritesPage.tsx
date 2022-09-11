@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Box, Pagination, Stack, Typography } from "@mui/material";
-import { FavCard } from "../components/FavCard";
+import { ItemCard } from "../components/ItemCard";
 import { savedItemType } from "../utils/types";
 import { getFavList, saveFavsToStorage } from "../utils/localStorage";
 import { CircularProgress } from "@mui/material";
@@ -56,7 +56,7 @@ export const FavouritesPage: React.FC = () => {
       <>
         <Box>
           {paginate(favList, perPage, page).map((item) => (
-            <FavCard key={item.id} remove={removeFavByIdHandler} {...item} />
+            <ItemCard key={item.id} remove={removeFavByIdHandler} {...item} />
           ))}
         </Box>
         <Stack spacing={2} sx={{ alignItems: "center", mb: 3 }}>

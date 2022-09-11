@@ -9,7 +9,7 @@ type removePropType = {
   remove?: (favId: string) => void;
 };
 
-export const FavCard: React.FC<savedItemType & removePropType> = ({
+export const ItemCard: React.FC<savedItemType & removePropType> = ({
   id,
   output,
   outputLang,
