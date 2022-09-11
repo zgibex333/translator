@@ -6,7 +6,7 @@ import { savedItemType } from "../utils/types";
 import { LanguagesListContext } from "../context/context";
 
 type removePropType = {
-  remove: (favId: string) => void;
+  remove?: (favId: string) => void;
 };
 
 export const FavCard: React.FC<savedItemType & removePropType> = ({
@@ -47,11 +47,13 @@ export const FavCard: React.FC<savedItemType & removePropType> = ({
           <span>{outputLangName}:</span> {output}
         </Typography>
       </CardContent>
-      <Box sx={{ position: "absolute", top: 0, right: 0 }}>
-        <IconButton onClick={() => remove(id)}>
-          <DeleteIcon />
-        </IconButton>
-      </Box>
+      {remove && id && (
+        <Box sx={{ position: "absolute", top: 0, right: 0 }}>
+          <IconButton onClick={() => remove(id)}>
+            <DeleteIcon />
+          </IconButton>
+        </Box>
+      )}
     </Card>
   );
 };

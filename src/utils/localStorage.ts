@@ -38,3 +38,26 @@ export const getFavList = () => {
 export const saveFavsToStorage = (array: savedItemType[]) => {
   localStorage.setItem("favourites", JSON.stringify(array));
 };
+
+export const addItemToStorageHistory = (
+  output: string,
+  outputLang: string,
+  input: string,
+  inputLang: string
+) => {
+  const history = JSON.parse(localStorage.getItem("history") || "[]");
+  const historyItem = { output, outputLang, input, inputLang };
+  if (!history.length) {
+    localStorage.setItem("history", JSON.stringify([historyItem]));
+  } else {
+    localStorage.setItem("history", JSON.stringify([...history, historyItem]));
+  }
+};
+
+export const getHistoryList = () => {
+  const history = JSON.parse(localStorage.getItem("history") || "[]");
+  if (history.length) {
+    return history;
+  }
+  return [];
+};

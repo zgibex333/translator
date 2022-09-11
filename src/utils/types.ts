@@ -42,7 +42,14 @@ export type detectedLangType = {
 };
 
 export type savedItemType = {
-  id: string;
+  id?: string;
+  output: string;
+  outputLang: string;
+  input: string;
+  inputLang: string;
+};
+
+export type historyItemType = {
   output: string;
   outputLang: string;
   input: string;

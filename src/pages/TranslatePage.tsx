@@ -10,6 +10,7 @@ import { useDebounce } from "../hooks/useDebounceHook";
 import { Alert } from "../components/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import { AxiosError } from "axios";
+import { addItemToStorageHistory } from "../utils/localStorage";
 
 type snackbarType = {
   message: string;
@@ -37,7 +38,7 @@ export const TranslatePage: React.FC = () => {
 
   const translateOnChangeHandler = async () => {
     setProcessingTranslation(true);
-    setDetectedLanguage("")
+    setDetectedLanguage("");
     try {
       const { translatedText, detectedSourceLanguage } =
         await translateStringQuery(
@@ -47,8 +48,15 @@ export const TranslatePage: React.FC = () => {
         );
       setOutputFieldValue(translatedText);
       if (detectedSourceLanguage) setDetectedLanguage(detectedSourceLanguage);
+      const currentLang = detectedSourceLanguage || currentLangInputField;
+      addItemToStorageHistory(
+        translatedText,
+        currentLangOutputField,
+        inputFieldValue,
+        currentLang
+      );
     } catch (err) {
-      const error = err as AxiosError | Error
+      const error = err as AxiosError | Error;
       setOpenAlert(true);
       setSnackbarData({
         message: error.message,
@@ -83,14 +91,14 @@ export const TranslatePage: React.FC = () => {
   useEffect(() => {
     if (isFirstRender) setIsFirstRender(false);
     if (!isFirstRender && inputFieldValue) translateOnChangeHandler();
-    if(!inputFieldValue) setOutputFieldValue("")
+    if (!inputFieldValue) setOutputFieldValue("");
   }, [debouncedValue]);
 
   useEffect(() => {
     if (isFirstRender) setIsFirstRender(false);
     if (!isFirstRender && inputFieldValue) translateOnChangeHandler();
-    if(!inputFieldValue) setOutputFieldValue("")
-  }, [currentLangInputField, currentLangOutputField])
+    if (!inputFieldValue) setOutputFieldValue("");
+  }, [currentLangInputField, currentLangOutputField]);
 
   return loading ? (
     <Box sx={{ display: "grid", mt: 3, placeItems: "center" }}>
@@ -133,7 +141,11 @@ export const TranslatePage: React.FC = () => {
           selectValue={currentLangOutputField}
           setSelectValue={setCurrentLangOutputField}
           fromLang={inputFieldValue}
-          fromText={currentLangInputField === "auto" ? detectedLanguage : currentLangInputField}
+          fromText={
+            currentLangInputField === "auto"
+              ? detectedLanguage
+              : currentLangInputField
+          }
         />
       </Box>
       <Snackbar

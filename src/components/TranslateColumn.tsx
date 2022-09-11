@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { columnPropsType } from "../utils/types";
 import { SelectField } from "./SelectField";
 import { TextArea } from "./TextArea";
-import Skeleton from "@mui/material/Skeleton";
+
 import IconButton from "@mui/material/IconButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -13,6 +13,7 @@ import {
   removePrevFavFromStorageHandler,
 } from "../utils/localStorage";
 import { v4 as uuidv4 } from "uuid";
+import { SkeletonProgress } from "./Skeleton";
 
 export const TranslateColumn: React.FC<columnPropsType> = ({
   inputValue,
@@ -90,21 +91,7 @@ export const TranslateColumn: React.FC<columnPropsType> = ({
         </>
       )}
 
-      {loading && type === "outputField" && (
-        <>
-          <Skeleton />
-          <Skeleton animation="wave" />
-          <Skeleton animation={false} />
-          <Skeleton />
-          <Skeleton animation="wave" />
-          <Skeleton animation={false} />
-          <Skeleton />
-          <Skeleton animation="wave" />
-          <Skeleton animation={false} />
-          <Skeleton />
-          <Skeleton animation="wave" />
-        </>
-      )}
+      {loading && type === "outputField" && <SkeletonProgress />}
       {type === "inputField" && (
         <>
           <TextArea
