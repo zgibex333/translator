@@ -1,8 +1,8 @@
 import { useState, useMemo } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { ColorModeContext } from "../context/context";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box } from "@mui/material";
+import { ColorModeContext } from "../context/context";
 
 type ColorMode = "light" | "dark";
 type Props = {
@@ -29,7 +29,7 @@ export const ContextWrapper: React.FC<Props> = ({ children }) => {
       }),
     [mode]
   );
-  
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>

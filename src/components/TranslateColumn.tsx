@@ -1,19 +1,18 @@
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Box } from "@mui/material";
-import { columnPropsType } from "../utils/types";
-import { SelectField } from "./SelectField";
-import { TextArea } from "./TextArea";
-
 import IconButton from "@mui/material/IconButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { DetectedLangSwitcher } from "./DetectedLangSwitcher";
-import { useEffect, useState } from "react";
 import {
   addFavToStorageHandler,
   removePrevFavFromStorageHandler,
 } from "../utils/localStorage";
-import { v4 as uuidv4 } from "uuid";
+import { TextArea } from "./TextArea";
+import { SelectField } from "./SelectField";
 import { SkeletonProgress } from "./Skeleton";
+import { columnPropsType } from "../utils/types";
 
 export const TranslateColumn: React.FC<columnPropsType> = ({
   inputValue,

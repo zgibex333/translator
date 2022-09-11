@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Box, Card, CardContent, IconButton, Typography } from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { savedItemType } from "../utils/types";
 import { LanguagesListContext } from "../context/context";
+import { savedItemType } from "../utils/types";
 
 type removePropType = {
   remove?: (favId: string) => void;

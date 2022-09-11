@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Box, Pagination, Stack, Typography } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import { ItemCard } from "../components/ItemCard";
 import { savedItemType } from "../utils/types";
 import { getFavList, saveFavsToStorage } from "../utils/localStorage";
-import { CircularProgress } from "@mui/material";
 import { LanguagesListContext } from "../context/context";
 import { countPagesAmount, paginate } from "../utils/pagination";
 

@@ -1,5 +1,5 @@
+import { useContext } from "react";
 import { Box, IconButton, Typography } from "@mui/material";
-import React, { useContext } from "react";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { detectedLangType } from "../utils/types";
 import { LanguagesListContext } from "../context/context";
@@ -7,14 +7,14 @@ import { LanguagesListContext } from "../context/context";
 export const DetectedLangSwitcher: React.FC<detectedLangType> = ({
   detectedLanguage,
   setColumnLanguage,
-  setDetectedLanguage
+  setDetectedLanguage,
 }) => {
   const { languages } = useContext(LanguagesListContext);
 
-  if (detectedLanguage && detectedLanguage !== "fil"  && setDetectedLanguage) {
+  if (detectedLanguage && detectedLanguage !== "fil" && setDetectedLanguage) {
     const switchLanguageHandler = () => {
       setColumnLanguage(detectedLanguage);
-      setDetectedLanguage("")
+      setDetectedLanguage("");
     };
     return (
       <Box

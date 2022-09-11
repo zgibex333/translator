@@ -1,6 +1,6 @@
-import { Header } from "./components/Header";
-import Container from "@mui/material/Container";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Container from "@mui/material/Container";
+import { Header } from "./components/Header";
 import { FAVOURITES, HISTORY, HOME } from "./utils/routes";
 import { TranslatePage } from "./pages/TranslatePage";
 import { FavouritesPage } from "./pages/FavouritesPage";

@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,10 +15,9 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import RttIcon from "@mui/icons-material/Rtt";
-import { ColorModeContext } from "../context/context";
 import { useTheme } from "@mui/material";
+import { ColorModeContext } from "../context/context";
 import { FAVOURITES, HISTORY, HOME } from "../utils/routes";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const pages: [string, React.ReactNode, string][] = [
   ["Translate", <RttIcon />, HOME],

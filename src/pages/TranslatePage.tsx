@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
+import { AxiosError } from "axios";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import RepeatIcon from "@mui/icons-material/Repeat";
+import { AlertColor, CircularProgress } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
+import { useDebounce } from "../hooks/useDebounceHook";
 import { TranslateColumn } from "../components/TranslateColumn";
 import { translateStringQuery } from "../api/requests";
 import { LanguagesListContext } from "../context/context";
-import { AlertColor, CircularProgress } from "@mui/material";
-import { useDebounce } from "../hooks/useDebounceHook";
 import { Alert } from "../components/Alert";
-import Snackbar from "@mui/material/Snackbar";
-import { AxiosError } from "axios";
 import { addItemToStorageHistory } from "../utils/localStorage";
 
 type snackbarType = {

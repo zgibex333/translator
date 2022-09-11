@@ -1,7 +1,7 @@
 import Skeleton from "@mui/material/Skeleton";
 
 
-export const SkeletonProgress = () => {
+export const SkeletonProgress: React.FC = () => {
     return (
         <>
           <Skeleton />

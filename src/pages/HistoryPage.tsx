@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from "react";
 import {
   Box,
   CircularProgress,
@@ -5,7 +6,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
 import { ItemCard } from "../components/ItemCard";
 import { LanguagesListContext } from "../context/context";
 import { getHistoryList } from "../utils/localStorage";

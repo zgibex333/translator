@@ -1,5 +1,5 @@
-import TextField from "@mui/material/TextField";
 import { ChangeEvent } from "react";
+import TextField from "@mui/material/TextField";
 import { textareaPropsType } from "../utils/types";
 
 export const TextArea: React.FC<textareaPropsType> = ({
