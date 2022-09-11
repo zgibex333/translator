@@ -1,8 +1,13 @@
 import { Box } from "@mui/material";
+import { textareaPropsType } from "../utils/types";
 import { SelectField } from "./SelectField";
 import { TextArea } from "./TextArea";
 
-export const TranslateColumn: React.FC = () => {
+export const TranslateColumn: React.FC<textareaPropsType> = ({
+  inputValue,
+  setInputValue,
+  type,
+}) => {
   return (
     <Box
       sx={{
@@ -10,7 +15,11 @@ export const TranslateColumn: React.FC = () => {
       }}
     >
       <SelectField />
-      <TextArea />
+      <TextArea
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        type={type}
+      />
     </Box>
   );
 };

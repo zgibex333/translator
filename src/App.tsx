@@ -1,4 +1,3 @@
-import { ContextWrapper } from "./components/ModeContextWrapper";
 import { Header } from "./components/Header";
 import Container from "@mui/material/Container";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -8,6 +7,7 @@ import { FavouritesPage } from "./pages/FavouritesPage";
 import { HistoryPage } from "./pages/HistoryPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { LangContextWrapper } from "./components/LangContextWrapper";
+import { ContextWrapper } from "./components/ModeContextWrapper";
 
 export const App: React.FC = () => {
   return (

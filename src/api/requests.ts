@@ -6,17 +6,20 @@ export const getLanguagesQuery = async () => {
   return response.data.data.languages;
 };
 
-// export const translateStringQuery = async (text: string) => {
-//   try {
-//     const response = await axios.post(TRANSLATE_ROUTE, {
-//       params: {
-//         ...defaultParams,
-//         "to[0]": "en",
-//         profanityAction: "NoAction",
-//         textType: "plain",
-//       },
-//       data: JSON.stringify([{ Text: text }]),
-//     });
-//     console.log(response.data);
-//   } catch (err) {}
-// };
+export const translateStringQuery = async (
+  text: string = "мама",
+  sourceLang: string = "auto",
+  targetLang: string = "en"
+) => {
+  try {
+    const response = await axios.post(
+      TRANSLATE_ROUTE,
+      new URLSearchParams({
+        source_language: sourceLang,
+        target_language: targetLang,
+        text: text,
+      })
+    );
+    console.log(response.data);
+  } catch (err) {}
+};
