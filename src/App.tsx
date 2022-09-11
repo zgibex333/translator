@@ -1,4 +1,4 @@
-import { ContextWrapper } from "./components/ContextWrapper";
+import { ContextWrapper } from "./components/ModeContextWrapper";
 import { Header } from "./components/Header";
 import Container from "@mui/material/Container";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -7,6 +7,7 @@ import { TranslatePage } from "./pages/TranslatePage";
 import { FavouritesPage } from "./pages/FavouritesPage";
 import { HistoryPage } from "./pages/HistoryPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { LangContextWrapper } from "./components/LangContextWrapper";
 
 export const App: React.FC = () => {
   return (
@@ -19,12 +20,14 @@ export const App: React.FC = () => {
             flexGrow: 1,
           }}
         >
-          <Routes>
-            <Route path={HOME} element={<TranslatePage />} />
-            <Route path={FAVOURITES} element={<FavouritesPage />} />
-            <Route path={HISTORY} element={<HistoryPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          <LangContextWrapper>
+            <Routes>
+              <Route path={HOME} element={<TranslatePage />} />
+              <Route path={FAVOURITES} element={<FavouritesPage />} />
+              <Route path={HISTORY} element={<HistoryPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </LangContextWrapper>
         </Container>
       </ContextWrapper>
     </BrowserRouter>

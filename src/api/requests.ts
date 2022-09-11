@@ -1,36 +1,22 @@
-import Axios from "axios";
+import { axios } from "./axiosInstance";
+import { GET_LANG_LIST, TRANSLATE_ROUTE } from "./constants";
 
-const axios = Axios.create({
-  baseURL: "https://text-translator2.p.rapidapi.com",
-  timeout: 1000,
-  headers: {
-    "content-type": "application/json",
-    "X-RapidAPI-Key": "53a50289e7mshb74c59dcd59bc87p1ce9aajsn5c6baa27d192",
-    "X-RapidAPI-Host": "text-translator2.p.rapidapi.com",
-  },
-});
-
-type getTranslateArgsType = {
-  sourceLang: string;
-  targetLang: string;
-  text: string;
+export const getLanguagesQuery = async () => {
+  const response = await axios.get(GET_LANG_LIST);
+  return response.data.data.languages;
 };
 
-const getTranslationResults = async ({
-  sourceLang,
-  targetLang,
-  text,
-}: getTranslateArgsType) => {
-  try {
-    const response = await axios.get("/translate", {
-      params: {
-        source_language: sourceLang,
-        target_language: targetLang,
-        text: text,
-      },
-    });
-    return response.data;
-  } catch (err) {
-    console.log(err);
-  }
-};
+// export const translateStringQuery = async (text: string) => {
+//   try {
+//     const response = await axios.post(TRANSLATE_ROUTE, {
+//       params: {
+//         ...defaultParams,
+//         "to[0]": "en",
+//         profanityAction: "NoAction",
+//         textType: "plain",
+//       },
+//       data: JSON.stringify([{ Text: text }]),
+//     });
+//     console.log(response.data);
+//   } catch (err) {}
+// };

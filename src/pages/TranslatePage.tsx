@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import RepeatIcon from "@mui/icons-material/Repeat";
 import { TranslateColumn } from "../components/TranslateColumn";
+import { getLanguagesQuery } from "../api/requests";
+import { LanguagesListContext } from "../context/context";
+import { CircularProgress } from "@mui/material";
 
 export const TranslatePage: React.FC = () => {
-  return (
+  const { loading } = useContext(LanguagesListContext);
+  return loading ? (
+    <Box sx={{ display: "grid", mt: 3, placeItems: "center" }}>
+      <CircularProgress />
+    </Box>
+  ) : (
     <Box
       sx={{
         display: "flex",
@@ -18,6 +26,7 @@ export const TranslatePage: React.FC = () => {
       <TranslateColumn />
       <Button
         variant="outlined"
+        onClick={() => getLanguagesQuery()}
         sx={{
           my: { xs: 2, md: "none" },
         }}
