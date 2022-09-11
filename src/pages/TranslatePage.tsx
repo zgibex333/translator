@@ -47,7 +47,6 @@ export const TranslatePage: React.FC = () => {
         );
       setOutputFieldValue(translatedText);
       if (detectedSourceLanguage) setDetectedLanguage(detectedSourceLanguage);
-      console.log(detectedSourceLanguage, 'detected')
     } catch (err) {
       const error = err as AxiosError | Error
       setOpenAlert(true);
@@ -133,6 +132,8 @@ export const TranslatePage: React.FC = () => {
           loading={processingTranslation}
           selectValue={currentLangOutputField}
           setSelectValue={setCurrentLangOutputField}
+          fromLang={inputFieldValue}
+          fromText={currentLangInputField === "auto" ? detectedLanguage : currentLangInputField}
         />
       </Box>
       <Snackbar

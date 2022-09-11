@@ -18,6 +18,8 @@ export type columnPropsType = {
   setSelectValue: Dispatch<SetStateAction<string>>;
   detectedLang?: string;
   setDetectedLanguage?: Dispatch<SetStateAction<string>>;
+  fromLang?: string;
+  fromText?: string;
 };
 
 export type textareaPropsType = {
@@ -37,4 +39,12 @@ export type detectedLangType = {
   detectedLanguage: string | undefined;
   setColumnLanguage: Dispatch<SetStateAction<string>>;
   setDetectedLanguage: Dispatch<SetStateAction<string>> | undefined;
+};
+
+export type savedItemType = {
+  id: string;
+  output: string;
+  outputLang: string;
+  input: string;
+  inputLang: string;
 };

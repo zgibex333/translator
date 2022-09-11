@@ -12,7 +12,6 @@ export const SelectField: React.FC<selectPropsType> = ({
   type,
 }) => {
   const { languages } = useContext(LanguagesListContext);
-
   const handleChange = (event: SelectChangeEvent) => {
     setSelectValue(event.target.value as string);
   };
