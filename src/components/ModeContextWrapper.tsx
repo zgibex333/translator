@@ -29,9 +29,7 @@ export const ContextWrapper: React.FC<Props> = ({ children }) => {
       }),
     [mode]
   );
-
-  console.log(colorMode);
-
+  
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
