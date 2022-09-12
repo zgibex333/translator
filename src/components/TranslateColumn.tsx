@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Box } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -27,7 +27,8 @@ export const TranslateColumn: React.FC<columnPropsType> = ({
   fromText,
 }) => {
   const [isMarkedFav, setIsMarkedFav] = useState<boolean>(false);
-
+  const changeSelectValue = useCallback(setSelectValue, [setSelectValue]);
+  
   const addToFavouritesHandler = () => {
     if (fromLang && fromText)
       setIsMarkedFav((prev) => {
@@ -51,6 +52,8 @@ export const TranslateColumn: React.FC<columnPropsType> = ({
     setIsMarkedFav(false);
   }, [inputValue]);
 
+ 
+
   return (
     <Box
       sx={{
@@ -60,7 +63,7 @@ export const TranslateColumn: React.FC<columnPropsType> = ({
     >
       <SelectField
         selectValue={selectValue}
-        setSelectValue={setSelectValue}
+        setSelectValue={changeSelectValue}
         type={type}
       />
       {!loading && type === "outputField" && (
