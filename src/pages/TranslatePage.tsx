@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import RepeatIcon from "@mui/icons-material/Repeat";
-import { AlertColor, CircularProgress } from "@mui/material";
+import { AlertColor, CircularProgress, Typography } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import { useDebounce } from "../hooks/useDebounceHook";
 import { TranslateColumn } from "../components/TranslateColumn";
@@ -18,7 +18,7 @@ type snackbarType = {
 };
 
 export const TranslatePage: React.FC = () => {
-  const { loading } = useContext(LanguagesListContext);
+  const { loading, languages } = useContext(LanguagesListContext);
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
   const [openAlert, setOpenAlert] = useState<boolean>(false);
   const [snackbarData, setSnackbarData] = useState<snackbarType>({
@@ -34,7 +34,10 @@ export const TranslatePage: React.FC = () => {
     useState<string>("auto");
   const [currentLangOutputField, setCurrentLangOutputField] =
     useState<string>("en");
-  const [debouncedValue, setDebounceStopped] = useDebounce(inputFieldValue, 1000);
+  const [debouncedValue, setDebounceStopped] = useDebounce(
+    inputFieldValue,
+    1000
+  );
 
   const translateOnChangeHandler = async () => {
     setProcessingTranslation(true);
@@ -56,6 +59,7 @@ export const TranslatePage: React.FC = () => {
         currentLang
       );
     } catch (err) {
+      setInputFieldValue("");
       const error = err as AxiosError | Error;
       setOpenAlert(true);
       setSnackbarData({
@@ -106,7 +110,7 @@ export const TranslatePage: React.FC = () => {
     <Box sx={{ display: "grid", mt: 3, placeItems: "center" }}>
       <CircularProgress />
     </Box>
-  ) : (
+  ) : languages.length ? (
     <>
       <Box
         sx={{
@@ -164,5 +168,15 @@ export const TranslatePage: React.FC = () => {
         </Alert>
       </Snackbar>
     </>
+  ) : (
+    <Box
+      sx={{
+        mt: 4,
+      }}
+    >
+      <Typography variant="h4" gutterBottom textAlign="center">
+        Failed to load page
+      </Typography>
+    </Box>
   );
 };

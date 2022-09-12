@@ -11,16 +11,16 @@ export const translateStringQuery = async (
   sourceLang: string = "auto",
   targetLang: string = "en"
 ) => {
-    const response = await axios.post(
-      TRANSLATE_ROUTE,
-      new URLSearchParams({
-        source_language: sourceLang,
-        target_language: targetLang,
-        text: text,
-      })
-    );
-    if(response.data.status === "error") {
-      throw new Error(response.data.message);
-    }
-    return response.data.data;
+  const response = await axios.post(
+    TRANSLATE_ROUTE,
+    new URLSearchParams({
+      source_language: sourceLang,
+      target_language: targetLang,
+      text: text,
+    })
+  );
+  if (response.data.status === "error") {
+    throw new Error(response.data.message);
+  }
+  return response.data.data;
 };

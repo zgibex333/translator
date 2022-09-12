@@ -50,6 +50,12 @@ export const addItemToStorageHistory = (
   if (!history.length) {
     localStorage.setItem("history", JSON.stringify([historyItem]));
   } else {
+    const lastItem = history[history.length - 1];
+    if (
+      lastItem.output.toLowerCase() === output.toLowerCase() &&
+      lastItem.input.toLowerCase() === input.toLowerCase()
+    )
+      return;
     localStorage.setItem("history", JSON.stringify([...history, historyItem]));
   }
 };
