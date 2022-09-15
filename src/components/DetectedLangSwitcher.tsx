@@ -10,7 +10,7 @@ export const DetectedLangSwitcher: React.FC<detectedLangType> = ({
   setDetectedLanguage,
 }) => {
   const { languages } = useContext(LanguagesListContext);
-
+  
   if (detectedLanguage && detectedLanguage !== "fil" && setDetectedLanguage) {
     const switchLanguageHandler = () => {
       setColumnLanguage(detectedLanguage);

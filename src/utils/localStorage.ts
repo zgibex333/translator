@@ -47,6 +47,7 @@ export const addItemToStorageHistory = (
 ) => {
   const history = JSON.parse(localStorage.getItem("history") || "[]");
   const historyItem = { output, outputLang, input, inputLang };
+  
   if (!history.length) {
     localStorage.setItem("history", JSON.stringify([historyItem]));
   } else {

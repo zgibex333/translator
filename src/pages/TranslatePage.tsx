@@ -50,8 +50,8 @@ export const TranslatePage: React.FC = () => {
           currentLangOutputField
         );
       setOutputFieldValue(translatedText);
-      if (detectedSourceLanguage) setDetectedLanguage(detectedSourceLanguage);
-      const currentLang = detectedSourceLanguage || currentLangInputField;
+      if (detectedSourceLanguage?.code) setDetectedLanguage(detectedSourceLanguage.code);
+      const currentLang = detectedSourceLanguage?.code || currentLangInputField;
       addItemToStorageHistory(
         translatedText,
         currentLangOutputField,
@@ -88,10 +88,14 @@ export const TranslatePage: React.FC = () => {
     if (currentLangInputField === "auto") {
       setCurrentLangInputField(currentLangOutputField);
       setCurrentLangOutputField(detectedLanguage || currentLangOutputField);
-    } else {
+      return;
+    } 
+    if(currentLangInputField === currentLangOutputField) {
+      translateOnChangeHandler()
+      return;
+    }
       setCurrentLangInputField(currentLangOutputField);
       setCurrentLangOutputField(tempValue);
-    }
   };
 
   useEffect(() => {
